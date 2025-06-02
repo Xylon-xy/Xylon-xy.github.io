@@ -1,74 +1,153 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Historia de los Videojuegos">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="estilos.css">
     <title>Historia de los Videojuegos</title>
     <style>
+        /* Fuente general */
         body {
             font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-size: 16px;
+            font-weight: normal;
+            font-style: normal;
+            font-variant: normal;
             background-color: #f4f4f4;
             color: #333;
             margin: 0;
             padding: 0;
+            line-height: 1.6;
         }
+
         header {
             background-color: #2c3e50;
             color: white;
             text-align: center;
             padding: 20px;
             font-size: 2rem;
+            text-transform: uppercase;
         }
+
         nav {
             text-align: center;
             margin: 10px 0;
         }
+
         nav a {
             margin: 0 15px;
             text-decoration: none;
             color: #3498db;
             font-weight: bold;
+            padding-left: 20px;
+            background-image: url('icono.png');
+            background-repeat: no-repeat;
+            background-position: left center;
+        }
+
+        nav a:link {
+            color: #3498db;
+        }
+        nav a:visited {
+            color: #8e44ad;
         }
         nav a:hover {
             color: #e74c3c;
+            text-decoration: underline;
         }
+        nav a:active {
+            color: #2ecc71;
+        }
+
         main {
             padding: 20px;
         }
+
         section {
             margin-bottom: 30px;
             background-color: #ecf0f1;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            text-align: justify;
         }
+
+        section p::first-letter {
+            font-size: 200%;
+            font-weight: bold;
+            color: #2980b9;
+        }
+
+        ul {
+            list-style-type: square;
+            list-style-position: inside;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            border-spacing: 0;
+        }
+
+        th, td {
+            border: 1px solid #bdc3c7;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #2980b9;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dfe6e9;
+        }
+
+        caption {
+            caption-side: top;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
         footer {
             text-align: center;
             padding: 15px 0;
             background-color: #34495e;
             color: white;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
+
+        a {
+            text-decoration: none;
         }
-        th, td {
-            border: 1px solid #bdc3c7;
-            padding: 10px;
-            text-align: center;
+
+        iframe {
+            max-width: 100%;
+            height: auto;
         }
-        th {
-            background-color: #2980b9;
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+
+        /* Botón subir */
+        .subir {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #3498db;
             color: white;
-        }
-        h2 {
-            color: #2980b9;
-        }
-        img {
-            border-radius: 10px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -95,8 +174,8 @@
             <p>El primer videojuego fue <em>"Tennis for Two"</em> en 1958. Muchos creen que fue <strong>Pong</strong>, pero este llegó en 1972.</p>
             <img src="pongvideo.gif" alt="Tennis for Two" name="tennis" width="300" height="200">
             <p>
-                <a href="https://www.coolmathgames.com/es/0-atari-pong" target="_blank" style="color: #3498db; text-decoration: underline; font-weight: bold;">
-                     Juega una recreación del juego original de ATARI aquí
+                <a href="https://www.coolmathgames.com/es/0-atari-pong" target="_blank">
+                    Juega una recreación del juego original de ATARI aquí
                 </a>
             </p>
         </section>
@@ -108,17 +187,9 @@
         </section>
 
         <section id="video">
-    <h2>Video: Breve historia de los videojuegos</h2>
-    <iframe width="560" height="315" 
-        src="https://www.youtube.com/embed/mWWp4tIjXCk?si=chwB5OzTG7Ys6MaW" 
-        title="YouTube video player" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-        referrerpolicy="strict-origin-when-cross-origin" 
-        allowfullscreen>
-    </iframe>
-</section>
-
+            <h2>Video: Breve historia de los videojuegos</h2>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/mWWp4tIjXCk?si=chwB5OzTG7Ys6MaW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </section>
 
         <section id="avances">
             <h2>Avances Importantes</h2>
@@ -155,10 +226,10 @@
     </main>
 
     <footer>
-    <p>&copy; 2025 Historia de los Videojuegos</p>
-   <a href="mailto:lbadillo2822@ags.conalep.edu.mx" style="color: #ffffff; text-decoration: underline; font-weight: bold;"> Enviar Email</a>
-</footer>
+        <p>&copy; 2025 Historia de los Videojuegos</p>
+        <a href="mailto:lbadillo2822@ags.conalep.edu.mx" style="color: #ffffff; text-decoration: underline; font-weight: bold;">Enviar Email</a>
+    </footer>
 
+    <a class="subir" href="#">↑ Subir</a>
 </body>
 </html>
-
