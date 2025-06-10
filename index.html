@@ -83,7 +83,7 @@
         }
 
         ul {
-            list-style: square url('imagen-inexistente.png') inside; /* Viñeta automática */
+            list-style: square url('imagen-inexistente.png') inside; /* Viñeta automática si falla la imagen */
         }
 
         table {
@@ -128,6 +128,27 @@
         iframe {
             max-width: 100%;
             height: auto;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+
+        /* BOTÓN SUBIR */
+        .subir {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
         }
 
         /* Formulario */
@@ -182,26 +203,6 @@
             background-color: #2980b9;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            nav a {
-                display: block;
-                margin: 10px 0;
-            }
-        }
-
-        /* Botón subir */
-        .subir {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #3498db;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
@@ -213,6 +214,8 @@
     <nav>
         <a href="#inicio">Inicio</a>
         <a href="#primer-juego">Primer Juego</a>
+        <a href="#arcades">Arcades</a>
+        <a href="#modernos">Modernos</a>
         <a href="Contacto.html">¡CONTACTANOS AHORA!</a>
     </nav>
 
@@ -220,18 +223,36 @@
         <section id="inicio">
             <h2>Introducción</h2>
             <p>Los <strong>videojuegos</strong> han evolucionado increíblemente desde sus inicios. Desde los primeros experimentos hasta los modernos mundos virtuales.</p>
+            <p>El impacto de los videojuegos va más allá del entretenimiento: ha influido en la cultura popular, la tecnología y la forma en que nos comunicamos e interactuamos con el mundo digital.</p>
             <img src="historiajuegos.png" alt="Historia de los Videojuegos" name="historia" width="300" height="200">
         </section>
 
         <section id="primer-juego">
             <h2>El Primer Videojuego</h2>
-            <p>El primer videojuego fue <em>"Tennis for Two"</em> en 1958. Muchos creen que fue <strong>Pong</strong>, pero este llegó en 1972.</p>
+            <p>El primer videojuego fue <em>"Tennis for Two"</em> en 1958, creado por William Higinbotham como una demostración interactiva para un evento científico. Muchos creen que fue <strong>Pong</strong>, pero este llegó en 1972, desarrollado por Nolan Bushnell y su empresa Atari.</p>
+            <p><strong>Pong</strong> marcó el inicio de la industria de los videojuegos comerciales, introduciendo al público a la idea de jugar contra una computadora o incluso contra otro jugador en la misma sala.</p>
             <img src="pongvideo.gif" alt="Tennis for Two" name="tennis" width="300" height="200">
             <p>
                 <a href="https://www.coolmathgames.com/es/0-atari-pong"  target="_blank">
                     Juega una recreación del juego original de ATARI aquí
                 </a>
             </p>
+        </section>
+
+        <!-- ===== NUEVA SECCIÓN: LA EDAD DE ORO DE LOS ARCADERAS ===== -->
+        <section id="arcades">
+            <h2>La Edad de Oro de los Arcades</h2>
+            <p>Entre los años 70 y 80, los salones de juegos (arcades) se convirtieron en lugares populares donde jóvenes competían en máquinas como <strong>Pac-Man</strong>, <strong>Donkey Kong</strong> y <strong>Space Invaders</strong>.</p>
+            <p>Estos juegos eran simples en diseño, pero adictivos y fáciles de entender. La competencia por obtener los mejores puntajes dio lugar a una cultura única de fanáticos y jugadores apasionados.</p>
+            <img src="arcade.jpg" alt="Salón de arcades clásico" width="300" height="200">
+        </section>
+
+        <!-- ===== NUEVA SECCIÓN: CONSOLAS MODERNAS Y EL FUTURO ===== -->
+        <section id="modernos">
+            <h2>Consolas Modernas y el Futuro de los Videojuegos</h2>
+            <p>Hoy en día, las consolas como la <strong>PlayStation 5</strong>, la <strong>Xbox Series X/S</strong> y la portátil <strong>Nintendo Switch</strong> ofrecen gráficos realistas, conexión online y experiencias inmersivas.</p>
+            <p>Además, la realidad virtual (VR), la inteligencia artificial y la nube están transformando cómo se juegan y distribuyen los videojuegos. El futuro promete tecnologías aún más avanzadas, como realidad aumentada y juegos interactivos con control por movimiento o mente.</p>
+            <img src="consolas-modernas.jpg" alt="Consolas modernas actuales" width="300" height="200">
         </section>
 
         <section id="mapa">
@@ -249,9 +270,14 @@
             <h2>Avances Importantes</h2>
             <ul>
                 <li><strong>1972:</strong> Nace <em>Pong</em> por Atari.</li>
-                <li><strong>1985:</strong> Llega <em>Super Mario Bros</em>.</li>
-                <li><strong>1994:</strong> Sony lanza la <ins>PlayStation</ins>.</li>
-                <li><strong>2001:</strong> Se estrena la Xbox de Microsoft.</li>
+                <li><strong>1978:</strong> Sale al mercado <em>Space Invaders</em>, uno de los primeros éxitos globales.</li>
+                <li><strong>1980:</strong> Llega <em>Pac-Man</em>, un ícono cultural de los videojuegos.</li>
+                <li><strong>1985:</strong> Llega <em>Super Mario Bros</em>, lanzando a Nintendo como líder mundial.</li>
+                <li><strong>1994:</strong> Sony lanza la <ins>PlayStation</ins>, revolucionando los juegos en 3D.</li>
+                <li><strong>2001:</strong> Se estrena la Xbox de Microsoft, introduciendo el multijugador online masivo.</li>
+                <li><strong>2006:</strong> Nintendo lanza la Wii, enfocándose en controles innovadores y jugadores casuales.</li>
+                <li><strong>2013:</strong> Lanzamiento de PS4 y Xbox One, consolidando el streaming y redes sociales en juegos.</li>
+                <li><strong>2020:</strong> PlayStation 5 y Xbox Series X marcan el comienzo de la era de los gráficos ultra-realistas y carga ultrarrápida.</li>
             </ul>
         </section>
 
@@ -275,12 +301,21 @@
                     <td>Game Boy</td>
                     <td>118</td>
                 </tr>
+                <tr>
+                    <td>PlayStation 4</td>
+                    <td>117</td>
+                </tr>
+                <tr>
+                    <td>Xbox 360</td>
+                    <td>84</td>
+                </tr>
             </table>
         </section>
 
-        <!-- Formulario de contacto -->
+        <!-- ===== FORMULARIO DE CONTACTO ===== -->
         <section id="contacto">
             <h2>Contáctanos</h2>
+            <p>¿Tienes dudas o deseas compartir tu experiencia con nosotros? ¡Usa el siguiente formulario para contactarnos!</p>
             <form class="formulario-contacto" onsubmit="return validarFormulario()">
                 <div class="grupo">
                     <label for="nombre">Nombre:</label>
@@ -304,17 +339,17 @@
         <a href="mailto:lbadillo2822@ags.conalep.edu.mx" style="color: #ffffff; text-decoration: underline; font-weight: bold;">Enviar Email</a> 
     </footer>
 
-    <!-- Mensaje si JS está deshabilitado -->
+    <!-- MENSAJE SI JS NO ESTÁ ACTIVADO -->
     <noscript>
         <p style="color:red; font-weight:bold; text-align:center;">
             Tu navegador no soporta JavaScript. Algunas funciones no estarán disponibles.
         </p>
     </noscript>
 
-    <!-- Archivo externo de JavaScript -->
+    <!-- SCRIPT EXTERNO -->
     <script type="text/javascript" src="script.js"></script>
 
-    <!-- Script Inline -->
+    <!-- SCRIPT INLINE -->
     <script>
         // Mostrar mensaje al cargar la página
         window.onload = function () {
