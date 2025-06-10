@@ -7,6 +7,8 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="estilos.css">
     <title>Historia de los Videojuegos</title>
+
+    <!-- Estilos internos -->
     <style>
         /* Fuente general */
         body {
@@ -81,8 +83,7 @@
         }
 
         ul {
-            list-style-type: square;
-            list-style-position: inside;
+            list-style: square url('imagen-inexistente.png') inside; /* Viñeta automática */
         }
 
         table {
@@ -129,6 +130,58 @@
             height: auto;
         }
 
+        /* Formulario */
+        .formulario-contacto {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .grupo {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            background-color: #eef6fb;
+        }
+
+        .boton-formulario {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .boton-formulario:hover {
+            background-color: #2980b9;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             nav a {
@@ -152,6 +205,7 @@
     </style>
 </head>
 <body>
+
     <header>
         Historia de los Videojuegos
     </header>
@@ -174,7 +228,7 @@
             <p>El primer videojuego fue <em>"Tennis for Two"</em> en 1958. Muchos creen que fue <strong>Pong</strong>, pero este llegó en 1972.</p>
             <img src="pongvideo.gif" alt="Tennis for Two" name="tennis" width="300" height="200">
             <p>
-                <a href="https://www.coolmathgames.com/es/0-atari-pong" target="_blank">
+                <a href="https://www.coolmathgames.com/es/0-atari-pong"  target="_blank">
                     Juega una recreación del juego original de ATARI aquí
                 </a>
             </p>
@@ -223,13 +277,63 @@
                 </tr>
             </table>
         </section>
+
+        <!-- Formulario de contacto -->
+        <section id="contacto">
+            <h2>Contáctanos</h2>
+            <form class="formulario-contacto" onsubmit="return validarFormulario()">
+                <div class="grupo">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="grupo">
+                    <label for="correo">Correo Electrónico:</label>
+                    <input type="email" id="correo" name="correo" required>
+                </div>
+                <div class="grupo">
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="boton-formulario">Enviar Mensaje</button>
+            </form>
+        </section>
     </main>
 
     <footer>
         <p>&copy; 2025 Historia de los Videojuegos</p>
-        <a href="mailto:lbadillo2822@ags.conalep.edu.mx" style="color: #ffffff; text-decoration: underline; font-weight: bold;">Enviar Email</a>
+        <a href="mailto:lbadillo2822@ags.conalep.edu.mx" style="color: #ffffff; text-decoration: underline; font-weight: bold;">Enviar Email</a> 
     </footer>
 
+    <!-- Mensaje si JS está deshabilitado -->
+    <noscript>
+        <p style="color:red; font-weight:bold; text-align:center;">
+            Tu navegador no soporta JavaScript. Algunas funciones no estarán disponibles.
+        </p>
+    </noscript>
+
+    <!-- Archivo externo de JavaScript -->
+    <script type="text/javascript" src="script.js"></script>
+
+    <!-- Script Inline -->
+    <script>
+        // Mostrar mensaje al cargar la página
+        window.onload = function () {
+            alert("¡Bienvenido/a a la Historia de los Videojuegos!");
+        };
+
+        // Validación simple del formulario
+        function validarFormulario() {
+            var nombre = document.getElementById("nombre").value.trim();
+            if (nombre === "") {
+                alert("Por favor, introduce tu nombre.");
+                return false;
+            }
+            alert("Gracias por tu mensaje, " + nombre + ". ¡Te contactaremos pronto!");
+            return true;
+        }
+    </script>
+
     <a class="subir" href="#">↑ Subir</a>
+
 </body>
 </html>
