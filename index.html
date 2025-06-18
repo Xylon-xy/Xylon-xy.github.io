@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Historia de los Videojuegos" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="estilos.css" />
     <title>Historia de los Videojuegos</title>
     <style>
         /* Diseño mejorado para una experiencia visual elevada */
@@ -20,6 +19,9 @@
             color: #ecf0f1;
             margin: 0;
             padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         header {
@@ -30,6 +32,7 @@
             font-size: 2.5rem;
             text-shadow: 2px 2px #16a085;
             border-bottom: 5px solid #16a085;
+            user-select: none;
         }
 
         nav {
@@ -47,15 +50,24 @@
             padding: 10px 20px;
             background: #2c3e50;
             border-radius: 30px;
-            transition: 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
 
-        nav a:hover {
+        nav a:hover,
+        nav a:focus {
             background: #1abc9c;
+            color: #0f2027;
+            outline: none;
         }
 
         main {
+            flex: 1 0 auto;
             padding: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
         }
 
         section {
@@ -76,6 +88,7 @@
             border-bottom: 2px solid #16a085;
             padding-bottom: 10px;
             margin-bottom: 20px;
+            user-select: none;
         }
 
         table {
@@ -84,11 +97,21 @@
             margin-top: 15px;
         }
 
+        caption {
+            caption-side: top;
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #1abc9c;
+        }
+
         th, td {
             border: 1px solid #7f8c8d;
             padding: 12px;
             background-color: rgba(236, 240, 241, 0.1);
             color: #ecf0f1;
+            text-align: center;
         }
 
         th {
@@ -110,24 +133,16 @@
             border-radius: 10px;
         }
 
-        .subir {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #1abc9c;
-            padding: 10px 20px;
-            border-radius: 50px;
-            color: white;
-            font-weight: bold;
-            text-decoration: none;
-            box-shadow: 0 0 10px #16a085;
+        #tiendita {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
-        footer {
-            background: #2c3e50;
-            text-align: center;
-            padding: 20px;
-            color: white;
+        #tiendita > div {
+            flex: 1 1 400px;
+            min-width: 320px;
         }
 
         #tiendita form {
@@ -150,6 +165,14 @@
             border: none;
             border-radius: 5px;
             margin-bottom: 15px;
+            font-size: 1rem;
+            transition: box-shadow 0.3s ease;
+        }
+
+        #tiendita input:focus,
+        #tiendita select:focus {
+            outline: none;
+            box-shadow: 0 0 8px #1abc9c;
         }
 
         #tiendita input[type="submit"] {
@@ -157,16 +180,74 @@
             color: white;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.3s;
+            transition: background-color 0.3s ease;
+            border: none;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 12px #16a085;
         }
 
-        #tiendita input[type="submit"]:hover {
+        #tiendita input[type="submit"]:hover,
+        #tiendita input[type="submit"]:focus {
             background-color: #16a085;
+            outline: none;
+        }
+
+        #tabla-juegos button {
+            background-color: #2980b9;
+            border: none;
+            padding: 6px 12px;
+            margin: 0 2px;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        #tabla-juegos button:hover,
+        #tabla-juegos button:focus {
+            background-color: #1abc9c;
+            outline: none;
+        }
+
+        .mensaje {
+            margin-top: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 10px;
+            border-radius: 6px;
+            display: none;
+            user-select: none;
+        }
+
+        .mensaje.exito {
+            color: #2ecc71;
+            background-color: rgba(46, 204, 113, 0.1);
+            border: 1px solid #27ae60;
+        }
+
+        .mensaje.error {
+            color: #e74c3c;
+            background-color: rgba(231, 76, 60, 0.1);
+            border: 1px solid #c0392b;
+        }
+
+        footer {
+            background: #2c3e50;
+            text-align: center;
+            padding: 20px;
+            color: white;
+            flex-shrink: 0;
+            user-select: none;
         }
 
         @media screen and (max-width: 768px) {
             nav {
                 flex-direction: column;
+            }
+            #tiendita {
+                flex-direction: column;
+                gap: 20px;
             }
         }
     </style>
@@ -178,13 +259,12 @@
     </header>
 
     <nav>
-    <a href="#inicio">Inicio</a>
-    <a href="#primer-juego">Primer Juego</a>
-    <a href="#tiendita">Tiendita</a>
-    <a href="Contacto.html">¡CONTACTANOS AHORA!</a>
-</nav>
-
-
+        <a href="#inicio">Inicio</a>
+        <a href="#primer-juego">Primer Juego</a>
+        <a href="#tiendita">Tiendita</a>
+        <a href="Contacto.html">¡CONTACTANOS AHORA!</a>
+		<a href="interactividad.html">Interactividad</a> 
+    </nav>
 
     <main>
         <section id="inicio">
@@ -198,14 +278,14 @@
             <p>El primer videojuego fue <em>"Tennis for Two"</em> en 1958...</p>
             <img src="pongvideo.gif" alt="Tennis for Two" width="300" height="200" />
             <p>
-                <a href="https://www.coolmathgames.com/es/0-atari-pong" target="_blank">Juega una recreación del juego original de ATARI aquí</a>
+                <a href="https://www.coolmathgames.com/es/0-atari-pong" target="_blank" rel="noopener noreferrer">Juega una recreación del juego original de ATARI aquí</a>
             </p>
         </section>
 
         <section id="mapa">
             <h2>Mapa de GamePlanet en Aguascalientes</h2>
             <p>Visita este mapa para encontrar la tienda GamePlanet más cercana...</p>
-            <iframe src="https://www.google.com/maps/embed?..." width="600" height="450" style="border:0;" allowfullscreen loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps/embed?..." width="600" height="450" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </section>
 
         <section id="video">
@@ -227,170 +307,292 @@
             <h2>Consolas Más Vendidas</h2>
             <table>
                 <caption>Top Consolas Más Vendidas</caption>
-                <tr>
-                    <th>Consola</th>
-                    <th>Ventas (millones)</th>
-                </tr>
-                <tr><td>PlayStation 2</td><td>155</td></tr>
-                <tr><td>Nintendo DS</td><td>154</td></tr>
-                <tr><td>Game Boy</td><td>118</td></tr>
+                <thead>
+                    <tr>
+                        <th>Consola</th>
+                        <th>Ventas (millones)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>PlayStation 2</td><td>155</td></tr>
+                    <tr><td>Nintendo DS</td><td>154</td></tr>
+                    <tr><td>Game Boy</td><td>118</td></tr>
+                </tbody>
             </table>
         </section>
 
-      <section id="tiendita" style="display: flex; gap: 40px; flex-wrap: wrap;">
-  <div style="flex: 1;">
-    <h2>Agregar Producto a la Tiendita</h2>
-    <form id="form-juego">
-      <label for="titulo">Título del Juego:</label>
-      <input type="text" id="titulo" name="titulo" required />
+        <section id="tiendita">
+            <div>
+                <h2>Agregar Producto a la Tiendita</h2>
+                <form id="form-juego" novalidate>
+                    <label for="titulo">Título del Juego:</label>
+                    <input type="text" id="titulo" name="titulo" required minlength="2" maxlength="50" placeholder="Ej. Halo Infinite" />
 
-      <label for="genero">Género:</label>
-      <select id="genero" name="genero" required>
-        <option value="">--Selecciona un género--</option>
-        <option value="Accion">Acción</option>
-        <option value="Aventura">Aventura</option>
-        <option value="Deportes">Deportes</option>
-        <option value="RPG">RPG</option>
-      </select>
+                    <label for="genero">Género:</label>
+                    <select id="genero" name="genero" required>
+                        <option value="">--Selecciona un género--</option>
+                        <option value="Accion">Acción</option>
+                        <option value="Aventura">Aventura</option>
+                        <option value="Deportes">Deportes</option>
+                        <option value="RPG">RPG</option>
+                    </select>
 
-      <label for="fecha">Fecha de Lanzamiento:</label>
-      <input type="date" id="fecha" name="fecha" required />
+                    <label for="fecha">Fecha de Lanzamiento:</label>
+                    <input type="date" id="fecha" name="fecha" required max="" />
 
-      <input type="submit" value="Agregar Juego" />
-    </form>
-  </div>
+                    <input type="submit" value="Agregar Juego" />
+                    <div class="mensaje" id="mensaje-form"></div>
+                </form>
+            </div>
 
-  <div style="flex: 1;">
-    <h2>Juegos en la Tiendita</h2>
-    <table id="tabla-juegos">
-      <thead>
-  <tr>
-    <th>Título</th>
-    <th>Género</th>
-    <th>Fecha</th>
-    <th>Acciones</th>
-  </tr>
-</thead>
-
-      <tbody>
-        <!-- Juegos serán insertados aquí -->
-      </tbody>
-    </table>
-  </div>
-</section>
-
-
+            <div>
+                <h2>Juegos en la Tiendita</h2>
+                <table id="tabla-juegos" aria-live="polite" aria-label="Lista de juegos en la tiendita">
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Género</th>
+                            <th>Fecha</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Juegos serán insertados aquí -->
+                    </tbody>
+                </table>
+                <div class="mensaje" id="mensaje-tabla"></div>
+            </div>
+        </section>
     </main>
 
     <footer>
         &copy; 2025 Historia de los Videojuegos - Todos los derechos reservados
     </footer>
-<script>
-  let db;
-  let editandoId = null;
 
-  window.onload = function () {
-    const request = indexedDB.open("TiendaJuegos", 1);
+    <script>
+      let db;
+      let editandoId = null;
 
-    request.onerror = function (event) {
-      console.error("Error al abrir IndexedDB", event);
-    };
+      // Limitar fecha máxima al día actual para evitar fechas futuras
+      const fechaInput = document.getElementById("fecha");
+      if (fechaInput) {
+        const hoy = new Date().toISOString().split("T")[0];
+        fechaInput.setAttribute("max", hoy);
+      }
 
-    request.onsuccess = function (event) {
-      db = request.result;
-      mostrarJuegos();
-    };
+      window.onload = function () {
+        const request = indexedDB.open("TiendaJuegos", 1);
 
-    request.onupgradeneeded = function (event) {
-      db = event.target.result;
-      if (!db.objectStoreNames.contains("juegos")) {
-        const store = db.createObjectStore("juegos", {
-          keyPath: "id",
-          autoIncrement: true
+        request.onerror = function (event) {
+          console.error("Error al abrir IndexedDB", event);
+          mostrarMensaje("mensaje-form", "Error al abrir la base de datos.", "error");
+        };
+
+        request.onsuccess = function (event) {
+          db = request.result;
+          mostrarJuegos();
+        };
+
+        request.onupgradeneeded = function (event) {
+          db = event.target.result;
+          if (!db.objectStoreNames.contains("juegos")) {
+            const store = db.createObjectStore("juegos", {
+              keyPath: "id",
+              autoIncrement: true
+            });
+            store.createIndex("titulo", "titulo", { unique: false });
+          }
+        };
+
+        const form = document.getElementById("form-juego");
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          manejarEnvioForm();
         });
-        store.createIndex("titulo", "titulo", { unique: false });
-      }
-    };
-
-    const form = document.getElementById("form-juego");
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const titulo = document.getElementById("titulo").value;
-      const genero = document.getElementById("genero").value;
-      const fecha = document.getElementById("fecha").value;
-
-      const transaction = db.transaction(["juegos"], "readwrite");
-      const store = transaction.objectStore("juegos");
-
-      const juego = { titulo, genero, fecha };
-
-      if (editandoId !== null) {
-        juego.id = editandoId;
-        store.put(juego);
-        editandoId = null;
-        form.querySelector("input[type=submit]").value = "Agregar Juego";
-      } else {
-        store.add(juego);
-      }
-
-      transaction.oncomplete = function () {
-        mostrarJuegos();
-        form.reset();
       };
-    });
-  };
 
-  function mostrarJuegos() {
-    const tbody = document.querySelector("#tabla-juegos tbody");
-    tbody.innerHTML = "";
+      function manejarEnvioForm() {
+        const titulo = document.getElementById("titulo").value.trim();
+        const genero = document.getElementById("genero").value;
+        const fecha = document.getElementById("fecha").value;
 
-    const transaction = db.transaction(["juegos"], "readonly");
-    const store = transaction.objectStore("juegos");
+        // Validaciones personalizadas
+        if (titulo.length < 2 || titulo.length > 50) {
+          mostrarMensaje("mensaje-form", "El título debe tener entre 2 y 50 caracteres.", "error");
+          return;
+        }
 
-    store.openCursor().onsuccess = function (event) {
-      const cursor = event.target.result;
-      if (cursor) {
-        const juego = cursor.value;
-        const fila = document.createElement("tr");
+        if (!genero) {
+          mostrarMensaje("mensaje-form", "Por favor, selecciona un género.", "error");
+          return;
+        }
 
-        fila.innerHTML = `
-          <td>${juego.titulo}</td>
-          <td>${juego.genero}</td>
-          <td>${juego.fecha}</td>
-          <td>
-            <button onclick="editarJuego(${juego.id})">Editar</button>
-            <button onclick="eliminarJuego(${juego.id})">Eliminar</button>
-          </td>
-        `;
+        if (!fecha) {
+          mostrarMensaje("mensaje-form", "Por favor, selecciona una fecha válida.", "error");
+          return;
+        }
 
-        tbody.appendChild(fila);
-        cursor.continue();
+        // Fecha no futura
+        const hoy = new Date();
+        const fechaSeleccionada = new Date(fecha);
+        if (fechaSeleccionada > hoy) {
+          mostrarMensaje("mensaje-form", "La fecha no puede ser futura.", "error");
+          return;
+        }
+
+        const transaction = db.transaction(["juegos"], "readwrite");
+        const store = transaction.objectStore("juegos");
+
+        const juego = { titulo, genero, fecha };
+
+        if (editandoId !== null) {
+          juego.id = editandoId;
+          const request = store.put(juego);
+          request.onsuccess = function () {
+            mostrarMensaje("mensaje-form", "Juego actualizado correctamente.", "exito");
+            resetForm();
+          };
+          request.onerror = function () {
+            mostrarMensaje("mensaje-form", "Error al actualizar el juego.", "error");
+          };
+          editandoId = null;
+          document.querySelector("input[type=submit]").value = "Agregar Juego";
+        } else {
+          const request = store.add(juego);
+          request.onsuccess = function () {
+            mostrarMensaje("mensaje-form", "Juego agregado correctamente.", "exito");
+            resetForm();
+          };
+          request.onerror = function () {
+            mostrarMensaje("mensaje-form", "Error al agregar el juego.", "error");
+          };
+        }
+
+        transaction.oncomplete = function () {
+          mostrarJuegos();
+        };
       }
-    };
-  }
 
-  function eliminarJuego(id) {
-    const transaction = db.transaction(["juegos"], "readwrite");
-    const store = transaction.objectStore("juegos");
-    store.delete(id);
-    transaction.oncomplete = mostrarJuegos;
-  }
+      function mostrarJuegos() {
+        const tbody = document.querySelector("#tabla-juegos tbody");
+        tbody.innerHTML = "";
 
-  function editarJuego(id) {
-    const transaction = db.transaction(["juegos"], "readonly");
-    const store = transaction.objectStore("juegos");
-    const request = store.get(id);
+        const transaction = db.transaction(["juegos"], "readonly");
+        const store = transaction.objectStore("juegos");
 
-    request.onsuccess = function () {
-      const juego = request.result;
-      document.getElementById("titulo").value = juego.titulo;
-      document.getElementById("genero").value = juego.genero;
-      document.getElementById("fecha").value = juego.fecha;
-      editandoId = juego.id;
-      document.querySelector("input[type=submit]").value = "Actualizar Juego";
-    };
-  }
-</script>
+        let count = 0;
 
+        store.openCursor().onsuccess = function (event) {
+          const cursor = event.target.result;
+          if (cursor) {
+            count++;
+            const juego = cursor.value;
+            const fila = document.createElement("tr");
+
+            fila.innerHTML = `
+              <td>${escapeHTML(juego.titulo)}</td>
+              <td>${escapeHTML(juego.genero)}</td>
+              <td>${escapeHTML(juego.fecha)}</td>
+              <td>
+                <button aria-label="Editar juego ${escapeHTML(juego.titulo)}" onclick="editarJuego(${juego.id})">Editar</button>
+                <button aria-label="Eliminar juego ${escapeHTML(juego.titulo)}" onclick="eliminarJuego(${juego.id})">Eliminar</button>
+              </td>
+            `;
+
+            tbody.appendChild(fila);
+            cursor.continue();
+          } else {
+            if (count === 0) {
+              tbody.innerHTML = <tr><td colspan="4" style="text-align:center; font-style: italic; color:#bbb;">No hay juegos agregados todavía.</td></tr>;
+            }
+          }
+        };
+      }
+
+      function eliminarJuego(id) {
+        if (!confirm("¿Seguro que quieres eliminar este juego?")) return;
+
+        const transaction = db.transaction(["juegos"], "readwrite");
+        const store = transaction.objectStore("juegos");
+        const request = store.delete(id);
+
+        request.onsuccess = function () {
+          mostrarMensaje("mensaje-tabla", "Juego eliminado correctamente.", "exito");
+          mostrarJuegos();
+          if (editandoId === id) {
+            resetForm();
+          }
+        };
+
+        request.onerror = function () {
+          mostrarMensaje("mensaje-tabla", "Error al eliminar el juego.", "error");
+        };
+      }
+
+      function editarJuego(id) {
+        const transaction = db.transaction(["juegos"], "readonly");
+        const store = transaction.objectStore("juegos");
+        const request = store.get(id);
+
+        request.onsuccess = function () {
+          const juego = request.result;
+          if (juego) {
+            document.getElementById("titulo").value = juego.titulo;
+            document.getElementById("genero").value = juego.genero;
+            document.getElementById("fecha").value = juego.fecha;
+            editandoId = id;
+            document.querySelector("input[type=submit]").value = "Guardar Cambios";
+            mostrarMensaje("mensaje-form", "Editando juego: " + escapeHTML(juego.titulo), "exito");
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        };
+
+        request.onerror = function () {
+          mostrarMensaje("mensaje-form", "Error al cargar el juego para edición.", "error");
+        };
+      }
+
+      function resetForm() {
+        document.getElementById("form-juego").reset();
+        editandoId = null;
+        document.querySelector("input[type=submit]").value = "Agregar Juego";
+        ocultarMensaje("mensaje-form");
+      }
+
+      function mostrarMensaje(id, texto, tipo) {
+        const elemento = document.getElementById(id);
+        if (!elemento) return;
+        elemento.textContent = texto;
+        elemento.className = mensaje ${tipo};
+        elemento.style.display = "block";
+
+        // Desaparece el mensaje después de 4 segundos
+        setTimeout(() => {
+          ocultarMensaje(id);
+        }, 4000);
+      }
+
+      function ocultarMensaje(id) {
+        const elemento = document.getElementById(id);
+        if (elemento) {
+          elemento.style.display = "none";
+          elemento.textContent = "";
+          elemento.className = "mensaje";
+        }
+      }
+
+      // Función para escapar texto y evitar XSS en inyecciones
+      function escapeHTML(text) {
+        return text.replace(/[&<>"']/g, function (m) {
+          return {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;'
+          }[m];
+        });
+      }
+    </script>
 </body>
 </html>
