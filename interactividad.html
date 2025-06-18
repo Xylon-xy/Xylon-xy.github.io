@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Interactividad Pro – Historia de los Videojuegos</title>
+  <style>
+    /* ==== Reset & Base ==== */
+    * { box-sizing:border-box; margin:0; padding:0 }
+    body {
+      font-family:'Segoe UI',sans-serif;
+      background:linear-gradient(to right,#0f2027,#203a43,#2c5364);
+      color:#ecf0f1; line-height:1.4;
+    }
+    header {
+      background:#1abc9c; padding:20px; text-align:center; position:relative;
+    }
+    header h1 { font-size:2rem }
+    #reloj {
+      position:absolute; top:20px; right:20px; font-weight:bold; color:#0f2027;
+    }
+    nav {
+      background:#34495e; text-align:center; padding:10px;
+    }
+    nav a {
+      color:white; text-decoration:none; margin:0 10px; padding:8px 15px;
+      background:#2c3e50; border-radius:15px; transition:background 0.3s;
+    }
+    nav a:hover { background:#1abc9c; color:#0f2027 }
+    main { max-width:900px; margin:auto; padding:20px }
+    section {
+      background:rgba(255,255,255,0.05); margin:20px 0; padding:20px;
+      border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.3);
+      transition:transform 0.3s;
+    }
+    section:hover { transform:scale(1.02) }
+    h2 {
+      color:#1abc9c; border-bottom:2px solid #16a085;
+      padding-bottom:5px; margin-bottom:15px;
+    }
+    input, select, button, textarea {
+      width:100%; max-width:400px; margin:8px 0; padding:8px;
+      border:none; border-radius:5px; background:rgba(255,255,255,0.9);
+      color:#0f2027; font-size:1rem;
+    }
+    button { background:#1abc9c; color:white; cursor:pointer }
+    button:hover { background:#16a085 }
+    .mensaje { margin-top:10px }
+    .error { color:#e74c3c }
+    .success { color:#2ecc71 }
+
+    /* ==== Timeline ==== */
+    .timeline {
+      position:relative; padding-left:20px;
+      border-left:3px solid #1abc9c; margin-top:10px;
+    }
+    .event {
+      position:relative; margin-bottom:20px; cursor:pointer;
+      background:rgba(255,255,255,0.2); padding:10px; border-radius:5px;
+    }
+    .event:hover {
+      background:rgba(255,255,255,0.4);
+    }
+    .event h3 { margin:0; color:#0f2027 }
+
+    /* ==== Modal ==== */
+    #modal {
+      display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+      background:rgba(0,0,0,0.7); align-items:center; justify-content:center;
+    }
+    #modal .contenido {
+      background:#ecf0f1; padding:20px; border-radius:10px;
+      max-width:500px; color:#0f2027;
+    }
+    #modal .contenido button {
+      background:#1abc9c; color:white; margin-top:15px;
+    }
+
+    /* ==== Quiz ==== */
+    .quiz label { display:block; margin:5px 0; color:#0f2027 }
+
+    /* ==== Star Rating ==== */
+    .stars { display:flex; gap:5px; margin:10px 0 }
+    .star { font-size:1.5rem; cursor:pointer; color:#7f8c8d; transition:color 0.2s }
+    .star.filled { color:#f1c40f }
+  </style>
+</head>
+<body>
+
+  <noscript>
+    <p class="mensaje error" style="text-align:center">
+      ⚠️ Activa JavaScript para interactividad completa.
+    </p>
+  </noscript>
+
+  <header>
+    <h1>Interactividad Pro</h1>
+    <div id="reloj">00:00:00</div>
+  </header>
+
+  <nav>
+    <a href="index.html">← Inicio</a>
+    <a href="interactividad.html">Recargar</a>
+  </nav>
+
+  <main>
+    <!-- Línea de Tiempo Filtrable -->
+    <section>
+      <h2>Línea del Tiempo</h2>
+      <select id="filtroDecada" onchange="actualizarLinea()">
+        <option value="todas">Todas las décadas</option>
+        <option value="1970">1970s</option>
+        <option value="1980">1980s</option>
+        <option value="1990">1990s</option>
+        <option value="2000">2000s</option>
+        <option value="2010">2010s</option>
+        <option value="2020">2020s</option>
+      </select>
+      <div class="timeline" id="timeline"></div>
+    </section>
+
+    <!-- Modal Detalles -->
+    <div id="modal">
+      <div class="contenido">
+        <h3 id="modalTitulo"></h3>
+        <p id="modalTexto"></p>
+        <button onclick="cerrarModal()">Cerrar</button>
+      </div>
+    </div>
+
+    <!-- Quiz Dinámico -->
+    <section>
+      <h2>Quiz de Consolas</h2>
+      <p>¿En qué año salió la NES?</p>
+      <div class="quiz">
+        <label><input type="radio" name="q1" value="1983">1983</label>
+        <label><input type="radio" name="q1" value="1985">1985</label>
+        <label><input type="radio" name="q1" value="1977">1977</label>
+      </div>
+      <button onclick="verificarQuiz()">Enviar Respuesta</button>
+      <p id="resQuiz" class="mensaje"></p>
+    </section>
+
+    <!-- Texto Interactivo -->
+    <section>
+      <h2>Operaciones de Texto</h2>
+      <input type="text" id="txtJuego" placeholder="Nombre de un juego" onchange="procesarTexto()">
+      <p id="salidaTexto" class="mensaje"></p>
+    </section>
+
+    <!-- Cálculos Jugadores × Horas -->
+    <section>
+      <h2>Cálculos Jugadores × Horas</h2>
+      <input type="number" id="num1" placeholder="Nº Jugadores" value="2">
+      <input type="number" id="num2" placeholder="Horas" value="5">
+      <button onclick="realizarCalculos()">Calcular</button>
+      <p id="salidaCalc" class="mensaje"></p>
+    </section>
+
+    <!-- Filtro en Vivo de Consolas -->
+    <section>
+      <h2>Filtro en Vivo de Consolas</h2>
+      <input type="text" id="busca" placeholder="Busca consola..." oninput="filtrarConsolas()">
+      <ul id="listaConsolas"></ul>
+    </section>
+
+    <!-- Valoración con Selección + Estrellas -->
+    <section>
+      <h2>Valora tu Consola Favorita</h2>
+      <select id="ratingConsole">
+        <option value="">--Selecciona Consola--</option>
+        <option>Atari Pong</option>
+        <option>NES</option>
+        <option>Game Boy</option>
+        <option>PlayStation</option>
+        <option>Xbox</option>
+        <option>Switch</option>
+        <option>PS5</option>
+      </select>
+      <div class="stars" id="stars"></div>
+      <p id="ratingMsg" class="mensaje"></p>
+    </section>
+  </main>
+
+  <script type="text/javascript" src="interactividad.js"></script>
+</body>
+</html>
